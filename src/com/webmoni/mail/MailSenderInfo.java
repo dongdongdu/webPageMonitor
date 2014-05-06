@@ -2,8 +2,8 @@ package com.webmoni.mail;
 
 /**   
  * 发送邮件需要使用的基本信息 
- *author by wangfun
- http://www.5a520.cn 小说520  
+ *author by Dongdong Du
+
  */
 import java.util.Properties;
 

@@ -16,7 +16,7 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 /**
- * 简单邮件（不带附件的邮件）发送器 http://www.bt285.cn BT下载
+ * 简单邮件（不带附件的邮件）发送器
  */
 public class SimpleMailSender {
     /**
@@ -25,7 +25,7 @@ public class SimpleMailSender {
      * @param mailInfo
      *            待发送的邮件的信息
      */
-    public boolean sendTextMail(MailSenderInfo mailInfo) {
+    public static boolean sendTextMail(MailSenderInfo mailInfo) {
         // 判断是否需要身份认证
         MyAuthenticator authenticator = null;
         Properties pro = mailInfo.getProperties();
