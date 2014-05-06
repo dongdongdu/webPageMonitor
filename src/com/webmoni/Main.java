@@ -1,11 +1,13 @@
 package com.webmoni;
 
+import static com.pkucareer.intern.SubscribeInterns.ProcessInternSubscription;
+
 public class Main {
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
 
-        // SendEmail();
+        ProcessInternSubscription();
+
     }
 
 }
