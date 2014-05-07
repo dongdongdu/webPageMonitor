@@ -5,15 +5,17 @@ public class InternObject {
     private int id;
     private String Name;
     private String createDate;
+    private String linkURL;
 
     public InternObject() {
         super();
     }
 
-    public InternObject(int id, String name, String createDate) {
+    public InternObject(int id, String name, String createDate, String linkURL) {
         this.id = id;
-        Name = name;
+        this.Name = name;
         this.createDate = createDate;
+        this.linkURL = linkURL;
     }
 
     public int getId() {
@@ -38,6 +40,14 @@ public class InternObject {
 
     public void setCreateDate(String createDate) {
         this.createDate = createDate;
+    }
+
+    public String getLinkURL() {
+        return linkURL;
+    }
+
+    public void setLinkURL(String linkURL) {
+        this.linkURL = linkURL;
     }
 
 }

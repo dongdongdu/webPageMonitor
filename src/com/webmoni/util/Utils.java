@@ -6,8 +6,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
@@ -95,6 +97,28 @@ public class Utils {
         }
 
         return properties;
+    }
+
+    public static void writeProperties(String filepath, String key, String value) {
+        writeProperties(filepath, key, value, "UTF-8");
+    }
+
+    public static void writeProperties(String filepath, String key, String value, String charset) {
+        Properties properties = readProperties(filepath);
+        properties.setProperty(key, value);
+
+        File file = new File(filepath);
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fos, charset);
+            properties.store(outputStreamWriter, "update");
+            fos.close();
+            outputStreamWriter.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void sendEmail(String subject, String content) {
