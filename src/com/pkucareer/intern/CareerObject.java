@@ -1,17 +1,17 @@
 package com.pkucareer.intern;
 
-public class InternObject {
+public class CareerObject {
 
     private int id;
     private String Name;
     private String createDate;
     private String linkURL;
 
-    public InternObject() {
+    public CareerObject() {
         super();
     }
 
-    public InternObject(int id, String name, String createDate, String linkURL) {
+    public CareerObject(int id, String name, String createDate, String linkURL) {
         this.id = id;
         this.Name = name;
         this.createDate = createDate;

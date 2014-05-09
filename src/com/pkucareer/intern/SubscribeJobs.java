@@ -14,43 +14,43 @@ import java.util.regex.Pattern;
 
 import com.webmoni.util.Utils;
 
-public class SubscribeInterns {
+public class SubscribeJobs {
 
-    static String urlInternBase = "http://jobplatform.pku.edu.cn/portal/listinternship?page=";
-    static String urlInternHost = "http://jobplatform.pku.edu.cn";
+    static String urlJobBase = "http://jobplatform.pku.edu.cn/portal/listemploy?page=";
+    static String urlJobnHost = "http://jobplatform.pku.edu.cn";
     static String configString = "ddusubsribe.properties";
-    static String keyString = "lastInternId";
+    static String keyString = "lastJobId";
 
-    private CareerObject lastIntern;
+    private CareerObject lastjob;
 
     public void ProcessSubscription() {
 
-        if (lastIntern == null) {
+        if (lastjob == null) {
             ReadMostRecentPost();
         }
 
-        int lastInternId = lastIntern.getId();
+        int lastJobId = lastjob.getId();
 
         TreeMap<Integer, CareerObject> results = new TreeMap<Integer, CareerObject>();
 
         // 获取前3页的网页内容
         for (int i = 1; i <= 3; i++) {
-            String webContent = RetriveWebContent(urlInternBase + i);
+            String webContent = RetriveWebContent(urlJobBase + i);
             String ul = getUlString(webContent);
             List<String> li = getLiList(ul);
             TreeMap<Integer, CareerObject> map = getTreeMapFromLiList(li);
 
-            if (map.lastKey() <= lastInternId) {
+            if (map.lastKey() <= lastJobId) {
                 // map 里最大的id 都比上次id 小说明没有更新，退出循环
                 break;
             }
 
-            SortedMap<Integer, CareerObject> newPostsMap = map.subMap(lastInternId, false, map.lastKey(), true);
+            SortedMap<Integer, CareerObject> newPostsMap = map.subMap(lastJobId, false, map.lastKey(), true);
             if (newPostsMap.size() > 0) {
                 results.putAll(newPostsMap);
             }
 
-            if (map.firstKey() <= lastInternId) {
+            if (map.firstKey() <= lastJobId) {
                 // 如果map里最小的id比上次id小，说明页面里只有部分更新，退出循环
                 break;
             }
@@ -63,9 +63,9 @@ public class SubscribeInterns {
             }
 
             // 更新最后lastInternId
-            if (lastInternId < results.lastKey()) {
-                lastInternId = results.lastKey();
-                Utils.writeProperties(configString, keyString, lastInternId + "");
+            if (lastJobId < results.lastKey()) {
+                lastJobId = results.lastKey();
+                Utils.writeProperties(configString, keyString, lastJobId + "");
             }
         } else {
             out.println("No new post");
@@ -83,7 +83,7 @@ public class SubscribeInterns {
             sb.append(m.group());
         }
 
-        String subject = String.format("北大实习信息 - %s %s", internObject.getName(), internObject.getCreateDate());
+        String subject = String.format("北大就业信息 - %s %s", internObject.getName(), internObject.getCreateDate());
         Utils.sendEmail(subject, sb.toString());
     }
 
@@ -102,7 +102,7 @@ public class SubscribeInterns {
             Matcher matcher = p.matcher(string);
             while (matcher.find()) {
                 int id = Integer.parseInt(matcher.group(2));
-                String link = urlInternHost + matcher.group(1).trim();
+                String link = urlJobnHost + matcher.group(1).trim();
                 String title = matcher.group(3).trim();
                 String createDate = matcher.group(4).trim();
 
@@ -151,7 +151,7 @@ public class SubscribeInterns {
         Properties properties = readProperties(configString);
 
         int lastInternId = Integer.parseInt(properties.getProperty(keyString));
-        lastIntern = new CareerObject();
-        lastIntern.setId(lastInternId);
+        lastjob = new CareerObject();
+        lastjob.setId(lastInternId);
     }
 }
