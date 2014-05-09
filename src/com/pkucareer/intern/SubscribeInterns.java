@@ -85,6 +85,7 @@ public class SubscribeInterns {
 
         String subject = String.format("北大实习信息 - %s %s", internObject.getName(), internObject.getCreateDate());
         Utils.sendEmail(subject, sb.toString());
+        out.println("邮件已发送：" + subject);
     }
 
     private TreeMap<Integer, CareerObject> getTreeMapFromLiList(List<String> liList) {
