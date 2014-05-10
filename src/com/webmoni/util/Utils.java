@@ -12,6 +12,10 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.Properties;
 
 import com.webmoni.mail.MailSenderInfo;
@@ -99,6 +103,30 @@ public class Utils {
         return properties;
     }
 
+    /**
+     * 
+     * @param filepath
+     * @param properties
+     *            <p>
+     *            Run readProperties to read all of the existing settings before run this method, because it will replace all of
+     *            the existing contents.
+     *            </p>
+     */
+    public static void writeProperties(String filepath, Properties properties) {
+        File file = new File(filepath);
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fos, "UTF-8");
+            properties.store(outputStreamWriter, "update");
+            fos.close();
+            outputStreamWriter.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void writeProperties(String filepath, String key, String value) {
         writeProperties(filepath, key, value, "UTF-8");
     }
@@ -138,6 +166,26 @@ public class Utils {
         mailInfo.setContent(content);
 
         SimpleMailSender.sendHtmlMail(mailInfo);
-
     }
+
+    public static Comparator<String> dateStringComparator = new Comparator<String>() {
+        @Override
+        public int compare(String o1, String o2) {
+
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+
+            java.util.Date d1 = null;
+            java.util.Date d2 = null;
+            try {
+                d1 = df.parse(o1);
+                d2 = df.parse(o2);
+            } catch (ParseException e) {
+                out.println("Error when parsing dateString, dateString should be in yyyy-MM-dd format, example like 2011-01-01.");
+                e.printStackTrace();
+            }
+            return d1.compareTo(d2);
+        }
+
+    };
+
 }

@@ -1,9 +1,15 @@
 package com.pkucareer.intern;
 
-public class CareerObject {
+import static java.lang.System.out;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+public class CareerObject implements Comparable<CareerObject> {
 
     private int id;
-    private String Name;
+    private String Title;
     private String createDate;
     private String linkURL;
 
@@ -11,9 +17,9 @@ public class CareerObject {
         super();
     }
 
-    public CareerObject(int id, String name, String createDate, String linkURL) {
+    public CareerObject(int id, String title, String createDate, String linkURL) {
         this.id = id;
-        this.Name = name;
+        this.Title = title;
         this.createDate = createDate;
         this.linkURL = linkURL;
     }
@@ -26,12 +32,12 @@ public class CareerObject {
         this.id = id;
     }
 
-    public String getName() {
-        return Name;
+    public String getTitle() {
+        return Title;
     }
 
-    public void setName(String name) {
-        Name = name;
+    public void setTitle(String name) {
+        Title = name;
     }
 
     public String getCreateDate() {
@@ -50,4 +56,20 @@ public class CareerObject {
         this.linkURL = linkURL;
     }
 
+    @Override
+    public int compareTo(CareerObject o) {
+
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+
+        java.util.Date d1 = null;
+        java.util.Date d2 = null;
+        try {
+            d1 = df.parse(this.createDate);
+            d2 = df.parse(o.getCreateDate());
+        } catch (ParseException e) {
+            out.println("Error when parsing dateString, dateString should be in yyyy-MM-dd format, example like 2011-01-01.");
+            e.printStackTrace();
+        }
+        return d1.compareTo(d2);
+    }
 }

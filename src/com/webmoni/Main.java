@@ -1,16 +1,18 @@
 package com.webmoni;
 
-import com.pkucareer.intern.SubscribeJobs;
+import java.text.ParseException;
+
+import com.pkucareer.intern.SubscribeInterns;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
 
-        // SubscribeInterns subscribeInterns = new SubscribeInterns();
-        // subscribeInterns.ProcessInternSubscription();
+        SubscribeInterns subscribeInterns = new SubscribeInterns();
+        subscribeInterns.ProcessSubscription();
 
-        SubscribeJobs subscribeJobs = new SubscribeJobs();
-        subscribeJobs.ProcessSubscription();
+        // SubscribeJobs subscribeJobs = new SubscribeJobs();
+        // subscribeJobs.ProcessSubscription();
 
     }
 
