@@ -91,7 +91,7 @@ public class SubscribeInterns {
             Utils.writeProperties(configString, properties);
 
         } else {
-            out.println("No new post");
+            out.println("No new post for interns");
         }
 
     }
@@ -118,7 +118,8 @@ public class SubscribeInterns {
             sb.append(m.group());
         }
 
-        String subject = String.format("北大就业信息 - %s %s", internObject.getTitle(), internObject.getCreateDate());
+        String subject = String.format("北大实习信息 - %s %s", internObject.getTitle(), internObject.getCreateDate());
+        out.println(subject);
         Utils.sendEmail(subject, sb.toString());
     }
 
