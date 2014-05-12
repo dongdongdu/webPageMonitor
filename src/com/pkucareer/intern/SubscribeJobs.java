@@ -87,7 +87,13 @@ public class SubscribeJobs {
 
             Properties properties = Utils.readProperties(configString);
             properties.setProperty(propCreateDate, newCreateDate);
-            properties.setProperty(propTitle, newTitles + lastTitles);
+
+            if (isSameDateString(lastCreateDate, newCreateDate)) {
+                properties.setProperty(propTitle, newTitles + lastTitles);
+            } else {
+                properties.setProperty(propTitle, newTitles);
+            }
+
             Utils.writeProperties(configString, properties);
 
         } else {
