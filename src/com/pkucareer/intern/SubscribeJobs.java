@@ -87,7 +87,7 @@ public class SubscribeJobs {
 
             Properties properties = Utils.readProperties(configString);
             properties.setProperty(propCreateDate, newCreateDate);
-            properties.setProperty(propTitle, newTitles);
+            properties.setProperty(propTitle, newTitles + lastTitles);
             Utils.writeProperties(configString, properties);
 
         } else {
