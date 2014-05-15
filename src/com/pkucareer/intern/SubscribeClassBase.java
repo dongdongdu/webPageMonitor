@@ -126,9 +126,22 @@ public abstract class SubscribeClassBase {
             sb.append(m.group());
         }
 
+        // 添加post的链接
+        String templateString = "<ul><li><a href=\"%s\">%s</a></li></ul>";
+        String objLink = internObject.getLinkURL();
+        String link = String.format(templateString, internObject.getLinkURL(), objLink, objLink);
+
+        StringBuffer sb2 = new StringBuffer();
+        sb2.append(link);
+
+        // 移除所有不必要的 li style
+        p = Pattern.compile("style=\".*?\"");
+        m = p.matcher(sb.toString());
+        sb2.append(m.replaceAll(""));
+
         String subject = String.format(subjectStringformat, internObject.getTitle(), internObject.getCreateDate());
         out.println(subject);
-        Utils.sendEmail(subject, sb.toString());
+        Utils.sendEmail(subject, sb2.toString());
     }
 
     private List<CareerObject> getCareerObjectListFromLiList(List<String> liList) {
