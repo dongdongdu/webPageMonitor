@@ -9,11 +9,11 @@ public class Main {
 
     public static void main(String[] args) throws ParseException {
 
-        SubscribeInterns subscribeInterns = new SubscribeInterns();
-        subscribeInterns.ProcessSubscription();
+        SubscribeInterns subscribeInterns1 = new SubscribeInterns();
+        subscribeInterns1.ProcessSubscription();
 
-        SubscribeJobs subscribeJobs = new SubscribeJobs();
-        subscribeJobs.ProcessSubscription();
+        SubscribeJobs subscribeJobs2 = new SubscribeJobs();
+        subscribeJobs2.ProcessSubscription();
 
     }
 
