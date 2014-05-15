@@ -161,11 +161,14 @@ public class Utils {
         mailInfo.setUserName(properties.getProperty("emailUsername"));
         mailInfo.setPassword(properties.getProperty("emailPassword"));// 您的邮箱密码
         mailInfo.setFromAddress(properties.getProperty("emailFrom"));
-        mailInfo.setToAddress(properties.getProperty("emailTo"));
         mailInfo.setSubject(subject);
         mailInfo.setContent(content);
 
-        SimpleMailSender.sendHtmlMail(mailInfo);
+        String[] tos = properties.getProperty("emailTo").split(";");
+        for (String string : tos) {
+            mailInfo.setToAddress(string.trim());
+            SimpleMailSender.sendHtmlMail(mailInfo);
+        }
     }
 
     public static Comparator<String> dateStringComparator = new Comparator<String>() {
