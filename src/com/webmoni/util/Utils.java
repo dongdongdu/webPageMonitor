@@ -169,6 +169,13 @@ public class Utils {
             mailInfo.setToAddress(string.trim());
             SimpleMailSender.sendHtmlMail(mailInfo);
         }
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            out.println("catch exception here");
+            e.printStackTrace();
+        }
     }
 
     public static Comparator<String> dateStringComparator = new Comparator<String>() {
