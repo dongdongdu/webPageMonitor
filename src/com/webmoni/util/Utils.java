@@ -3,6 +3,7 @@ package com.webmoni.util;
 import static java.lang.System.out;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -16,6 +17,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.Properties;
 
 import com.webmoni.mail.MailSenderInfo;
@@ -55,9 +57,12 @@ public class Utils {
             in.close();
         } catch (MalformedURLException e) {
             out.println("你输入的URL格式有问题");
+            Utils.writeToLog("你输入的URL格式有问题");
             e.printStackTrace();
+            Utils.writeToLog(e.getMessage());
         } catch (IOException e) {
             e.printStackTrace();
+            Utils.writeToLog(e.getMessage());
         }
 
         return sb.toString();
@@ -174,6 +179,7 @@ public class Utils {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             out.println("catch exception here");
+            Utils.writeToLog("catch exception here");
             e.printStackTrace();
         }
     }
@@ -191,11 +197,46 @@ public class Utils {
                 d2 = df.parse(o2);
             } catch (ParseException e) {
                 out.println("Error when parsing dateString, dateString should be in yyyy-MM-dd format, example like 2011-01-01.");
+                Utils.writeToLog("Error when parsing dateString, dateString should be in yyyy-MM-dd format, example like 2011-01-01.");
                 e.printStackTrace();
             }
             return d1.compareTo(d2);
         }
 
     };
+
+    public static void writeToLog(String message) {
+        String logfile = "log.log";
+        File file = new File(logfile);
+        try {
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            FileOutputStream fos = null;
+            OutputStreamWriter osw = null;
+
+            if (file.length() > 1000000) {
+                // If file size > 1M, reset
+                fos = new FileOutputStream(file, false);
+            } else {
+                fos = new FileOutputStream(file, true);
+            }
+
+            osw = new OutputStreamWriter(fos, "UTF-8");
+            BufferedWriter bw = new BufferedWriter(osw);
+
+            Date date = new Date();
+            bw.write(String.format("%s %s", new SimpleDateFormat("yyyy/MM/dd HH:mm:ss ").format(date), message));
+            bw.newLine();
+
+            bw.close();
+            osw.close();
+            fos.close();
+
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 
 }

@@ -100,6 +100,7 @@ public abstract class SubscribeClassBase {
 
         } else {
             out.println(noPostString);
+            Utils.writeToLog(noPostString);
         }
 
     }
@@ -141,6 +142,7 @@ public abstract class SubscribeClassBase {
 
         String subject = String.format(subjectStringformat, internObject.getTitle(), internObject.getCreateDate());
         out.println(subject);
+        Utils.writeToLog(subject);
         Utils.sendEmail(subject, sb2.toString());
     }
 
@@ -179,6 +181,7 @@ public abstract class SubscribeClassBase {
         }
         if (li.size() == 0) {
             out.println("Does not find any matches for li");
+            Utils.writeToLog("Does not find any matches for li");
             return null;
         }
         return li;
@@ -196,6 +199,7 @@ public abstract class SubscribeClassBase {
         }
         if (ul.length() == 0) {
             out.println("Does not find any matches for ul");
+            Utils.writeToLog("Does not find any matches for ul");
             return null;
         }
         return ul.toString();

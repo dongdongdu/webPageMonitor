@@ -15,6 +15,8 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+import com.webmoni.util.Utils;
+
 /**
  * 简单邮件（不带附件的邮件）发送器
  */
@@ -57,6 +59,7 @@ public class SimpleMailSender {
             return true;
         } catch (MessagingException ex) {
             ex.printStackTrace();
+            Utils.writeToLog(ex.getMessage());
         }
         return false;
     }
@@ -106,6 +109,7 @@ public class SimpleMailSender {
             return true;
         } catch (MessagingException ex) {
             ex.printStackTrace();
+            Utils.writeToLog(ex.getMessage());
         }
         return false;
     }

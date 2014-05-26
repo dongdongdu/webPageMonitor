@@ -6,6 +6,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import com.webmoni.util.Utils;
+
 public class CareerObject implements Comparable<CareerObject> {
 
     private int id;
@@ -68,7 +70,9 @@ public class CareerObject implements Comparable<CareerObject> {
             d2 = df.parse(o.getCreateDate());
         } catch (ParseException e) {
             out.println("Error when parsing dateString, dateString should be in yyyy-MM-dd format, example like 2011-01-01.");
+            Utils.writeToLog("Error when parsing dateString, dateString should be in yyyy-MM-dd format, example like 2011-01-01.");
             e.printStackTrace();
+            Utils.writeToLog(e.getMessage());
         }
         return d1.compareTo(d2);
     }
