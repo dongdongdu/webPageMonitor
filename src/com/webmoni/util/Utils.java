@@ -19,6 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.Properties;
+import java.util.Random;
 
 import com.webmoni.mail.MailSenderInfo;
 import com.webmoni.mail.SimpleMailSender;
@@ -176,7 +177,10 @@ public class Utils {
         }
 
         try {
-            Thread.sleep(5000);
+            Random rnd = new Random();
+            // Get a random number between 1 to 10 times 1000 to the seconds
+            int waitTime = (rnd.nextInt(10) + 1) * 1000;
+            Thread.sleep(waitTime);
         } catch (InterruptedException e) {
             out.println("catch exception here");
             Utils.writeToLog("catch exception here");

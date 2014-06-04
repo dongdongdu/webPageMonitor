@@ -11,7 +11,7 @@ public class test {
         String a3 = "abc哈哈哈";
         Utils.writeToLog(a1);
         Utils.writeToLog(a2);
-        Utils.writeToLog(a2);
+        Utils.writeToLog(a3);
     }
 
 }
