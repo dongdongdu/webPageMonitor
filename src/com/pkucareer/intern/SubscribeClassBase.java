@@ -140,7 +140,7 @@ public abstract class SubscribeClassBase {
         m = p.matcher(sb.toString());
         sb2.append(m.replaceAll(""));
 
-        String subject = String.format(subjectStringformat, internObject.getTitle(), internObject.getCreateDate());
+        String subject = String.format(subjectStringformat, internObject.getCreateDate(), internObject.getTitle());
         out.println(subject);
         Utils.writeToLog(subject);
         Utils.sendEmail(subject, sb2.toString());
