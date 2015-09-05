@@ -1,14 +1,17 @@
 package com.webmoni;
 
+
 public class test {
 
     public static void main(String[] args) {
 
-        String aa = "313121/jfaksdjf";
+        // String aa = "http://scc.pku.edu.cn/home!recruitList.action?category=1&start=0&limit=40";
+        //
+        // String a2 = "https://portal.pku.edu.cn/portal2013/notice/retrAllDeptNotice.do?start=0&limit=10";
+        //
+        // String bb = Utils.RetriveWebContent(a2);
+        //
+        // System.out.println(bb);
 
-        String[] strings = aa.split("[\\\\/]", 2);
-
-        System.out.println();
     }
-
 }

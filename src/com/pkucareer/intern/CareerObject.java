@@ -10,7 +10,6 @@ import com.webmoni.util.Utils;
 
 public class CareerObject implements Comparable<CareerObject> {
 
-    private int id;
     private String Title;
     private String createDate;
     private String linkURL;
@@ -19,19 +18,10 @@ public class CareerObject implements Comparable<CareerObject> {
         super();
     }
 
-    public CareerObject(int id, String title, String createDate, String linkURL) {
-        this.id = id;
+    public CareerObject(String title, String createDate, String linkURL) {
         this.Title = title;
         this.createDate = createDate;
         this.linkURL = linkURL;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getTitle() {
