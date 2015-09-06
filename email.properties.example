@@ -1,0 +1,6 @@
+emailSmtp=smtp.163.com
+emailPort=25
+emailUsername=test@163.com
+emailPassword=password
+emailFrom=test@163.com
+emailTo=test1@163.com;test2@163.com;test3@163.com
