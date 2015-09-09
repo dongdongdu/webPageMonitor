@@ -13,15 +13,21 @@ public class CareerObject implements Comparable<CareerObject> {
     private String Title;
     private String createDate;
     private String linkURL;
+    private String department;
 
     public CareerObject() {
         super();
     }
 
     public CareerObject(String title, String createDate, String linkURL) {
+        this(title, createDate, linkURL, "");
+    }
+
+    public CareerObject(String title, String createDate, String linkURL, String department) {
         this.Title = title;
         this.createDate = createDate;
         this.linkURL = linkURL;
+        this.department = department;
     }
 
     public String getTitle() {
@@ -46,6 +52,14 @@ public class CareerObject implements Comparable<CareerObject> {
 
     public void setLinkURL(String linkURL) {
         this.linkURL = linkURL;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
     public int compareTo(CareerObject o) {

@@ -1,7 +1,6 @@
 package com.webmoni;
 
-import java.net.MalformedURLException;
-import java.net.URL;
+import com.pkucareer.intern.SubscribePortalInfo;
 
 public class test {
 
@@ -15,12 +14,7 @@ public class test {
         //
         // System.out.println(bb);
 
-        try {
-            URL url = new URL(a2);
-        } catch (MalformedURLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
+        SubscribePortalInfo aInfo = new SubscribePortalInfo();
+        aInfo.ProcessInfo();
     }
 }
