@@ -48,11 +48,8 @@ public class CareerObject implements Comparable<CareerObject> {
         this.linkURL = linkURL;
     }
 
-    @Override
     public int compareTo(CareerObject o) {
-
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-
         java.util.Date d1 = null;
         java.util.Date d2 = null;
         try {

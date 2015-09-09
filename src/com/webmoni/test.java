@@ -1,5 +1,7 @@
 package com.webmoni;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class test {
 
@@ -7,11 +9,18 @@ public class test {
 
         // String aa = "http://scc.pku.edu.cn/home!recruitList.action?category=1&start=0&limit=40";
         //
-        // String a2 = "https://portal.pku.edu.cn/portal2013/notice/retrAllDeptNotice.do?start=0&limit=10";
+        String a2 = "https://portal.pku.edu.cn/portal2013/notice/retrAllDeptNotice.do?start=0&limit=10";
         //
         // String bb = Utils.RetriveWebContent(a2);
         //
         // System.out.println(bb);
+
+        try {
+            URL url = new URL(a2);
+        } catch (MalformedURLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
     }
 }

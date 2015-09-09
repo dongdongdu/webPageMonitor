@@ -189,11 +189,8 @@ public class Utils {
     }
 
     public static Comparator<String> dateStringComparator = new Comparator<String>() {
-        @Override
         public int compare(String o1, String o2) {
-
             DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-
             java.util.Date d1 = null;
             java.util.Date d2 = null;
             try {
@@ -206,7 +203,6 @@ public class Utils {
             }
             return d1.compareTo(d2);
         }
-
     };
 
     public static void writeToLog(String message) {
