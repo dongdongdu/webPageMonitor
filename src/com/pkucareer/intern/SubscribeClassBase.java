@@ -1,6 +1,7 @@
 package com.pkucareer.intern;
 
 import static com.webmoni.util.Utils.dateStringComparator;
+import static com.webmoni.util.Utils.isSameDateString;
 import static com.webmoni.util.Utils.readProperties;
 import static java.lang.System.out;
 
@@ -88,18 +89,6 @@ public abstract class SubscribeClassBase {
             Utils.writeToLog(noPostString);
         }
 
-    }
-
-    /**
-     * 
-     * @param oldDateString
-     * @param newDateString
-     * 
-     * @return
-     */
-    private boolean isSameDateString(String dateString1, String dateString2) {
-        int a = dateStringComparator.compare(dateString1, dateString2);
-        return a == 0 ? true : false;
     }
 
     private void notifyNewPost(CareerObject internObject) {

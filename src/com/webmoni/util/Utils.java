@@ -239,4 +239,16 @@ public class Utils {
         }
     }
 
+    /**
+     * 
+     * @param oldDateString
+     * @param newDateString
+     * 
+     * @return
+     */
+    public static boolean isSameDateString(String dateString1, String dateString2) {
+        int a = dateStringComparator.compare(dateString1, dateString2);
+        return a == 0 ? true : false;
+    }
+
 }
