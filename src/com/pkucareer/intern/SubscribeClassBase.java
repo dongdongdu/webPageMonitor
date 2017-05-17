@@ -6,10 +6,9 @@ import static com.webmoni.util.Utils.readProperties;
 import static java.lang.System.out;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Properties;
+import java.time.format.DateTimeParseException;
+import java.util.*;
+import java.text.SimpleDateFormat;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -22,11 +21,17 @@ public abstract class SubscribeClassBase {
     protected String urlJobnHost = "http://scc.pku.edu.cn/";
     protected String configString = "ddusubsribe.properties";
 
+    protected String elementsPattern = "table#articleList tbody tr";
+
+
     protected String urlJobBase = "";
     protected String propCreateDate = "";
     protected String propTitle = "";
     protected String noPostString = "";
     protected String subjectStringformat = "";
+
+
+
 
     String lastCreateDate = null;
     String lastTitles = null;
@@ -123,10 +128,10 @@ public abstract class SubscribeClassBase {
 
         try {
             doc = Jsoup.connect(urlJobBase).get();
-            Elements elements = doc.select("table#articleList tbody tr");
+            Elements elements = doc.select(elementsPattern);
             for (Element element : elements) {
                 String title = element.child(1).text();
-                String date = element.child(2).text();
+                String date = element.child(2).text().split(" ")[0];
 
                 String link = "";
 
